@@ -264,7 +264,6 @@ describe("buildSystemPrompt SOUL.md sanitization", () => {
       financial: { creditsCents: 5000, usdcBalance: 10, lastChecked: new Date().toISOString() },
       state: "running",
       db,
-      tools: [],
       isFirstRun: false,
     });
 
@@ -297,7 +296,6 @@ describe("buildSystemPrompt genesis prompt sanitization", () => {
       financial: { creditsCents: 5000, usdcBalance: 10, lastChecked: new Date().toISOString() },
       state: "running",
       db,
-      tools: [],
       isFirstRun: false,
     });
 
@@ -319,7 +317,6 @@ describe("buildSystemPrompt genesis prompt sanitization", () => {
       financial: { creditsCents: 5000, usdcBalance: 10, lastChecked: new Date().toISOString() },
       state: "running",
       db,
-      tools: [],
       isFirstRun: false,
     });
 
@@ -355,7 +352,6 @@ describe("buildSystemPrompt status block", () => {
       financial: { creditsCents: 5000, usdcBalance: 10, lastChecked: new Date().toISOString() },
       state: "running",
       db,
-      tools: [],
       isFirstRun: false,
     });
 
@@ -380,7 +376,6 @@ describe("buildSystemPrompt status block", () => {
       financial: { creditsCents: 5000, usdcBalance: 10, lastChecked: new Date().toISOString() },
       state: "running",
       db,
-      tools: [],
       isFirstRun: false,
     });
 
@@ -403,7 +398,6 @@ describe("buildSystemPrompt status block", () => {
       financial: { creditsCents: 5000, usdcBalance: 10, lastChecked: new Date().toISOString() },
       state: "running",
       db,
-      tools: [],
       isFirstRun: false,
     });
 
@@ -424,7 +418,6 @@ describe("buildSystemPrompt status block", () => {
       financial: { creditsCents: 5000, usdcBalance: 10, lastChecked: new Date().toISOString() },
       state: "running",
       db,
-      tools: [],
       isFirstRun: false,
     });
 
@@ -446,7 +439,6 @@ describe("buildSystemPrompt status block", () => {
       financial: { creditsCents: 30, usdcBalance: 0, lastChecked: new Date().toISOString() },
       state: "running",
       db,
-      tools: [],
       isFirstRun: false,
     });
     expect(prompt).toContain("Survival tier: low_compute");
@@ -458,7 +450,6 @@ describe("buildSystemPrompt status block", () => {
       financial: { creditsCents: 5, usdcBalance: 0, lastChecked: new Date().toISOString() },
       state: "running",
       db,
-      tools: [],
       isFirstRun: false,
     });
     expect(prompt).toContain("Survival tier: critical");
@@ -470,7 +461,6 @@ describe("buildSystemPrompt status block", () => {
       financial: { creditsCents: 0, usdcBalance: 0, lastChecked: new Date().toISOString() },
       state: "running",
       db,
-      tools: [],
       isFirstRun: false,
     });
     expect(prompt).toContain("Survival tier: dead");

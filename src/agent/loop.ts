@@ -507,7 +507,6 @@ export async function runAgentLoop(
         financial,
         state: db.getAgentState(),
         db,
-        tools,
         skills,
         isFirstRun,
       });
