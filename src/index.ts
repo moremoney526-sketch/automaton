@@ -291,8 +291,10 @@ async function run(): Promise<void> {
     maxTokens: config.maxTokensPerTurn,
     lowComputeModel: config.modelStrategy?.lowComputeModel || "gpt-5-mini",
     openaiApiKey: config.openaiApiKey,
+    openaiBaseUrl: process.env.OPENAI_BASE_URL || config.openaiBaseUrl,
     anthropicApiKey: config.anthropicApiKey,
     ollamaBaseUrl,
+    groqApiKey: process.env.GROQ_API_KEY,
     getModelProvider: (modelId) => modelRegistry.get(modelId)?.provider,
   });
 

@@ -12,9 +12,8 @@ import { gitInit, gitCommit, gitStatus, gitLog } from "./tools.js";
 const AUTOMATON_DIR = "~/.automaton";
 
 function resolveHome(p: string): string {
-  const home = process.env.HOME || "/root";
   if (p.startsWith("~")) {
-    return `${home}${p.slice(1)}`;
+    return `/root${p.slice(1)}`;
   }
   return p;
 }

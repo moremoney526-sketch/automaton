@@ -103,6 +103,20 @@ export function createConwayClient(options: ConwayClientOptions): ConwayClient {
   };
 
 
+  // ─── Path Normalization ───────────────────────────────────────
+  // Conway sandboxes run Linux. Paths from the CLI host (potentially Windows)
+  // must be converted to Unix-absolute paths before being sent to the sandbox API.
+
+  const normalizeSandboxPath = (p: string): string => {
+    let normalized = p.replace(/\\/g, "/");
+    normalized = normalized.replace(/^[a-zA-Z]:\//, "/");
+    normalized = normalized.replace(/^~/, "/root");
+    if (!normalized.startsWith("/")) {
+      normalized = `/${normalized}`;
+    }
+    return normalized;
+  };
+
   // ─── Sandbox Operations (own sandbox) ────────────────────────
   // When sandboxId is empty, automatically fall back to local execution.
 
@@ -181,9 +195,12 @@ export function createConwayClient(options: ConwayClientOptions): ConwayClient {
       fs.writeFileSync(resolved, content, "utf-8");
       return;
     }
+    // Normalize path for Linux sandbox (Conway sandboxes are always Linux).
+    // Handle Windows paths from the CLI host.
+    const sandboxPath = normalizeSandboxPath(filePath);
     try {
       await request("POST", `/v1/sandboxes/${sandboxId}/files/upload/json`, {
-        path: filePath,
+        path: sandboxPath,
         content,
       });
     } catch (err: any) {

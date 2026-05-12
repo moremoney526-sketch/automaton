@@ -52,6 +52,7 @@ export interface AutomatonConfig {
   openaiApiKey?: string;
   anthropicApiKey?: string;
   ollamaBaseUrl?: string;
+  openaiBaseUrl?: string;
   inferenceModel: string;
   maxTokensPerTurn: number;
   heartbeatConfigPath: string;
@@ -79,8 +80,8 @@ export interface AutomatonConfig {
 
 export const DEFAULT_CONFIG: Partial<AutomatonConfig> = {
   conwayApiUrl: "https://api.conway.tech",
-  inferenceModel: "gpt-5.2",
-  maxTokensPerTurn: 4096,
+  inferenceModel: "llama-3.3-70b-versatile",
+  maxTokensPerTurn: 1500,
   heartbeatConfigPath: "~/.automaton/heartbeat.yml",
   dbPath: "~/.automaton/state.db",
   logLevel: "info",
@@ -1142,7 +1143,7 @@ export const DEFAULT_MEMORY_BUDGET: MemoryBudget = {
 
 // === Phase 2.3: Inference & Model Strategy Types ===
 
-export type ModelProvider = "openai" | "anthropic" | "conway" | "ollama" | "other";
+export type ModelProvider = "openai" | "anthropic" | "conway" | "ollama" | "groq" | "other";
 
 export type InferenceTaskType =
   | "agent_turn"
@@ -1245,10 +1246,10 @@ export interface ModelStrategyConfig {
 }
 
 export const DEFAULT_MODEL_STRATEGY_CONFIG: ModelStrategyConfig = {
-  inferenceModel: "gpt-5.2",
-  lowComputeModel: "gpt-5-mini",
-  criticalModel: "gpt-5-mini",
-  maxTokensPerTurn: 4096,
+  inferenceModel: "llama-3.3-70b-versatile",
+  lowComputeModel: "llama-3.1-8b-instant",
+  criticalModel: "llama-3.1-8b-instant",
+  maxTokensPerTurn: 1500,
   hourlyBudgetCents: 0,
   sessionBudgetCents: 0,
   perCallCeilingCents: 0,
